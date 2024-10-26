@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import Main from './page/Main/Main';
+
 import Login1 from './page/Login/Login1';
 import Login2 from './page/Login/Login2';
 import Login_Mentee1 from './page/Login/Mentee/Login_Mentee1';
@@ -11,12 +12,15 @@ import Login_Mento2 from './page/Login/Mento/Login_Mento2';
 import Login_Mento3 from './page/Login/Mento/Login_Mento3';
 import Login_Mento4 from './page/Login/Mento/Login_Mento4';
 import Login_Mento5 from './page/Login/Mento/Login_Mento5';
+import Chat from './page/Chat/Chat';
+
 
 function App() {
   
   return (
     <Router>
     <Routes>
+
 
       <Route path="/" element={<Login1 />} />
       <Route path="/login2" element={<Login2 />} />
@@ -28,6 +32,9 @@ function App() {
       <Route path="/login_mentee1" element={<Login_Mentee1 />} />
       <Route path="/login_mentee2" element={<Login_Mentee2 />} />
       <Route path="/login_mentee3" element={<Login_Mentee3 />} />
+      <Route path="/chat" element={<Chat/>}/>
+
+
     </Routes>
     </Router>
   );
