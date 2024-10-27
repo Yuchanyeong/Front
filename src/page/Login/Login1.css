@@ -1,35 +1,48 @@
 .login-container {
     display: flex;
-    flex-direction: column; /* 요소를 세로로 배치 */
-    justify-content: center; /* 세로 가운데 정렬 */
-    align-items: center; /* 수평 가운데 정렬 */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
+}
 
 .logo {
-  
-    background-image: url('/Users/yuchan-yeong/project-1/public/image/Damento.png');
-    width: 260px; /* 로고 너비 */
-    height: 107px; /* 로고 높이 */
-    background-repeat: no-repeat; /* 이미지 반복 방지 */
-    background-position: center; /* 이미지 위치를 가운데로 */
+    background-image: url('../../asset/Damento.png');
+    width: 260px;
+    height: 107px;
+    background-repeat: no-repeat;
+    background-position: center;
     margin-bottom: 150px;
-  
 }
 
+/* 버튼들을 세로로 정렬하기 위한 컨테이너 */
+.login-button-group {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center;
+    gap: 15px; /* 버튼 간의 간격 */
+}
 
-.button {
-    background-color: white;
-    width: 300px; 
-    height: 60px;
-    padding: 10px;
-    margin: 10px 0; /* 버튼 간 간격 */
-    display: flex; /* 버튼 내부 요소들을 flex로 배치 */
-    justify-content: center; /* 내부 이미지와 텍스트를 가운데 정렬 */
-    align-items: center; /* 내부 요소를 수직 가운데 정렬 */
+.login-button {
+    width: 300px;
+    height: 60px !important; 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     border: none;
+    cursor: pointer;
+    border-radius: 8px;
 }
 
+/* 각 버튼의 배경 이미지 설정 */
+#google {
+    background-image: url('../../asset/google.png');
+}
 
+#kakao {
+    background-image: url('../../asset/kakao.png');
+}
 
-
+#naver {
+    background-image: url('../../asset/naver.png');
 }

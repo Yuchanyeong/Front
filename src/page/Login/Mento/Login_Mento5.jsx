@@ -20,7 +20,7 @@ function Login_Mento5() {
                 <div className="circle-image">프로필 변경</div>
             </div>
 
-            <div className="button-group">
+            <div className="button-group5">
                 <button>선택</button>
                 <button>삭제</button>
             </div>

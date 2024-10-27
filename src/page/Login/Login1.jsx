@@ -5,21 +5,10 @@ function Login1() {
     return (
         <div className="login-container">
             <div className="logo"></div>
-            <div>
-
-            <button className="button">
-            <img src={`${process.env.PUBLIC_URL}/image/google.png`} />
-             
-                </button>
-                <button className="button">
-                <img src={`${process.env.PUBLIC_URL}/image/kakao.png`} />
-              
-                </button>
-                <button className="button">
-                <img src={`${process.env.PUBLIC_URL}/image/naver.png`} />
-        
-                </button>
-
+            <div className="login-button-group">
+                <button id="google" className="login-button"></button>
+                <button id="kakao" className="login-button"></button>
+                <button id="naver" className="login-button"></button>
             </div>
         </div>
     );
