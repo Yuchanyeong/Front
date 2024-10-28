@@ -36,7 +36,7 @@
     .tab-content::-webkit-scrollbar{
       display: none;
     }
- 
+   
    .tabactive{
 
        
@@ -56,11 +56,15 @@
 
    }
    #tabCont{
-    height: 100%;
+    height: calc(100vh - 98px);
+    display: flex;
+    flex-direction: column;
+
    }
 
    .tabs{
-    height: auto;
+    height: 100%;
+    display: flex;
    }
   
    .tab{
@@ -111,6 +115,10 @@
 
 
    }
+   chatCont:hover{
+    background-color: #ffce47 ;
+   }
+   
    #profile{
       
         width: 60px;
@@ -211,6 +219,9 @@
 
 
    }
+   #navi-con{
+    height: 98px;
+   }
    #navi{
      width: 390px;
      height: 98px;
@@ -231,6 +242,8 @@
        background-image: url('../../asset/home.png');
        background-repeat: no-repeat;
        background-size: contain;
+       border: none;
+       background-color: #D9D9D9;
      }
      #chat{
        width: 40px;
@@ -238,6 +251,8 @@
        background-image: url('../../asset/chat_select.png');
        background-repeat: no-repeat;
        background-size: contain;
+       border: none;
+       background-color: #D9D9D9;
  
      }
      #search{
@@ -246,6 +261,8 @@
        background-image: url('../../asset/search.png');
        background-repeat: no-repeat;
        background-size: contain;
+       border: none;
+       background-color: #D9D9D9;
      }
      #mypage{
        width: 49px;
@@ -254,7 +271,155 @@
        background-repeat: no-repeat;
        background-size: contain;
        margin-right: 32px;
+       border: none;
+       background-color: #D9D9D9;
      }
-     
+    
 }
 
+ .modal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 27px;
+      padding-top: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      max-width: 375px;
+      width: 300px;
+      z-index: 1000; /* 모달이 다른 요소들 위에 표시되도록 */
+      text-align: center; /* 텍스트 가운데 정렬 */
+      background: #FFFFFF;
+      border-radius: 10px;
+      font-family: 'Pretendard';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 28px;
+      letter-spacing: -1px;
+      color: #000000;
+      border:3px solid #ffce47 ;
+     
+
+     
+  }
+  #modal_close{
+    background-color: #FFFFFF;
+    border: none;
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
+    font-size: 30px;
+    display: flex;
+  
+   
+  }
+  #modal_top{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  
+  }
+  #modal_cont{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 14px;
+
+  }
+  #modal_intro{
+
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom:41px ;
+
+    color: rgba(0, 0, 0, 0.7);
+
+
+  }
+  #modal_ect{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #modal_img{
+    width: 140px;
+    height: 140px;
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-image: url(../../asset/profile.png);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  #modal_name{
+   
+
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 35px;
+    display: flex;
+    align-items: flex-end;
+
+    color: #000000;
+
+
+  }
+  #modal_tag{
+    
+    font-family: '눈누 기초고딕 Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 28px;
+    display: flex;
+    align-items: flex-end;
+
+    color: #000000;
+
+
+  }
+  #goChat{
+   
+
+
+    width: 164px;
+    height: 46px;
+    left: 112px;
+    top: 501px;
+    
+
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+   
+
+    color: #000000;
+
+
+    background: #FFAD60;
+    border-radius: 5px;
+    border: none;
+
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 999; /* 모달 오버레이가 다른 요소들 위에 표시되도록 */
+}
