@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import './Login_Mento5.css';  // CSS 파일을 import
+import './Login_Mento4.css';  // CSS 파일을 import
 
-function Login_Mento5() {
+function Login_Mento4() {
     const [nickname, setNickname] = useState('');
     const [introduction, setIntroduction] = useState('');
     const [age, setAge] = useState('');
@@ -17,10 +17,10 @@ function Login_Mento5() {
             <h2>프로필 완성!</h2>
 
             <div className="profile-image">
-                <div className="circle-image">프로필 변경</div>
+                <div className="circle-image"></div>
             </div>
 
-            <div className="button-group">
+            <div className="button-group5">
                 <button>선택</button>
                 <button>삭제</button>
             </div>
@@ -58,4 +58,4 @@ function Login_Mento5() {
     );
 }
 
-export default Login_Mento5;
+export default Login_Mento4;

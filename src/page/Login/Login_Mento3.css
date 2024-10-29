@@ -1,0 +1,61 @@
+.Login_Mento3-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 390px;
+    height: 100vh;
+
+
+.mento3-title {
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 32px;
+    color: #000000;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.mento3-subtitle {
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: #000000;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.certify-div{
+    width:390px;
+    height:450px;
+}
+
+.mento3-button {
+    display: flex;
+    bottom: 10px;
+    padding: 0px;
+    left: 50%;
+    width: 320px; 
+    height: 60px; 
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 50px;
+ 
+}
+#schola-button {
+    background-image: url('../../asset/schola-button.png');
+}
+
+.mento3-button:hover {
+    background-color: rgba(0, 0, 0, 0.3); /* 어두운 오버레이 효과 */
+    filter: brightness(0.8); /* 약간 어둡게 조정 */
+}
+
+}
