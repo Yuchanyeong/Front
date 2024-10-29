@@ -95,3 +95,8 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.login2-button:hover {
+    background-color: rgba(0, 0, 0, 0.3); /* 어두운 오버레이 효과 */
+    filter: brightness(0.8); /* 약간 어둡게 조정 */
+}

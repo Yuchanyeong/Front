@@ -15,10 +15,13 @@ h2 {
 }
 
 .circle-image {
+
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: lightgray;
+    background-image: url('../../asset/account-circle.png');
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +29,7 @@ h2 {
     cursor: pointer;
 }
 
-.button-group3 {
+.button-group5 {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
@@ -49,4 +52,9 @@ input, select, textarea {
 textarea {
     resize: none;
     height: 100px;
+}
+
+.mentee1-button:hover {
+    background-color: rgba(0, 0, 0, 0.3); /* 어두운 오버레이 효과 */
+    filter: brightness(0.8); /* 약간 어둡게 조정 */
 }
