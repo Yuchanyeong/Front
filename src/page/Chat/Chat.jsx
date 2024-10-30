@@ -174,7 +174,7 @@ function Chat() {
                     </div>
                     </div>
                     <div id="modal_intro">{selectedData?.intro}</div>
-                    <button id="goChat">채팅하기</button>
+                    <button id="goChat" onClick={()=> navigate('/chatroom')}>채팅하기</button>
                 </div>
                  ) : null} 
             </Modal>

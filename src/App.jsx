@@ -13,6 +13,7 @@ import Login_Mento3 from './page/Login/Mento/Login_Mento3';
 import Login_Mento4 from './page/Login/Mento/Login_Mento4';
 import Login_Mento5 from './page/Login/Mento/Login_Mento5';
 import Chat from './page/Chat/Chat';
+import ChatRoom from "./page/ChatRoom/ChatRoom";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Route path="/login_mentee2" element={<Login_Mentee2 />} />
       <Route path="/login_mentee3" element={<Login_Mentee3 />} />
       <Route path="/chat" element={<Chat/>}/>
+      <Route path="/chatroom" element={<ChatRoom/>}/>
 
 
     </Routes>
