@@ -15,6 +15,7 @@ import Login_Mento5 from './page/Login/Mento/Login_Mento5';
 import Chat from './page/Chat/Chat';
 import ChatRoom from "./page/ChatRoom/ChatRoom";
 import Search from "./page/Search/Search";
+import Mypage from "./page/Mypage/Mypage";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
       <Route path="/chat" element={<Chat/>}/>
       <Route path="/chatroom" element={<ChatRoom/>}/>
       <Route path="/search" element={<Search/>}/>
+      <Route path="/mypage" element={<Mypage/>}/>
 
     </Routes>
     </Router>
