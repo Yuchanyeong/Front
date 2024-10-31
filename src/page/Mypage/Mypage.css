@@ -48,8 +48,7 @@
       
         display: flex;
         align-items: flex-end;
-        color: #AEAEAE;
-
+        
 
     }
     #review{
@@ -492,6 +491,14 @@
            border: none;
            background-color: #D9D9D9;
          }
+
+         .status_declined{
+            color:#EA0000;
+         }
+         .status_applied{
+            color: #AEAEAE;
+         }
+        
         
 }
 .Mypage::-webkit-scrollbar{
@@ -570,4 +577,4 @@ margin-right: 4.5px;
        
         color: #000000;
 
-}
+} 

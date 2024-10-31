@@ -27,13 +27,13 @@ function Mypage_mentee(){
             name:"김이박",
             age:12,
             tag:"미국/한국어",
-            status:"대기중"
+            status:true
         },
         {
             name:"최감자",
             age:12,
             tag:"캐나다/한국어",
-            status:"거절됨"
+            status:false
         }
 
     ]
@@ -89,8 +89,8 @@ function Mypage_mentee(){
                         <div id="list_tag">#{data.tag}</div>
                        
                     </div>
-                    <div id="list_ect">
-                       {data.status}
+                    <div id="list_ect" className={`${data.status ? 'status_applied' : 'status_declined'}`}>
+                      {data.status ? "대기중" : "거절됨"}
                     </div> 
                     </div>
                     {index < submitList.length - 1 && <div id="divider"></div>}
