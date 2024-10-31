@@ -35,6 +35,46 @@
         justify-content:center;
         background-color: #ffad60; 
     }
+    #list_ect{
+     
+        width: 53px;
+        height: 27px;
+
+        font-family: 'NoonnuBasicGothicRegular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 27px;
+      
+        display: flex;
+        align-items: flex-end;
+        color: #AEAEAE;
+
+
+    }
+    #review{
+    
+        box-sizing: border-box;
+
+        width: 45px;
+        height: 30px;
+
+        background: #FFAD60;
+        border: 1px solid #000000;
+        border-radius: 3px;
+        font-family: 'NoonnuBasicGothicRegular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        display: flex;
+        align-items: flex-end;
+
+        color: #000000;
+
+
+
+    }
    
     #profile{
         display: flex;
@@ -287,6 +327,7 @@
       }
       #main_cont{
         margin-left: 12px;
+        width:150px ;
       
       }
       #list_tag{
@@ -451,7 +492,82 @@
            border: none;
            background-color: #D9D9D9;
          }
+        
 }
 .Mypage::-webkit-scrollbar{
     display: none;
+}
+.review_popup{
+    position: absolute;
+    width: 287.42px;
+    height: 151px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+    padding: 12;
+
+}
+.smile{
+ 
+width: 40px;
+height: 40px;
+background-image: url('../../asset/smile.png');
+margin-left: 4.5px;
+margin-right: 4.5px;
+
+
+}
+.smile_active{
+    width: 40px;
+    height: 40px;
+    background-image: url('../../asset/smile_active.png');
+    margin-left: 4.5px;
+    margin-right: 4.5px;
+}
+#star_cont{
+    display: flex;
+    flex-direction: row;
+    margin-top: 13px;
+    
+}
+#review_submit{
+    margin-top:11px;
+    
+    box-sizing: border-box;
+
+    width: 50px;
+    height: 34.8px;
+
+    background: #FFAD60;
+    border: 1px solid #000000;
+    border-radius: 3px;
+
+        font-family: 'NoonnuBasicGothicRegular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+       
+        color: #000000;
+
 }

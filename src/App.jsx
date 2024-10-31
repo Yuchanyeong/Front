@@ -16,6 +16,7 @@ import Chat from './page/Chat/Chat';
 import ChatRoom from "./page/ChatRoom/ChatRoom";
 import Search from "./page/Search/Search";
 import Mypage from "./page/Mypage/Mypage";
+import Mypage_mentee from "./page/Mypage/Mypage_mentee";
 
 
 function App() {
@@ -38,7 +39,8 @@ function App() {
       <Route path="/chat" element={<Chat/>}/>
       <Route path="/chatroom" element={<ChatRoom/>}/>
       <Route path="/search" element={<Search/>}/>
-      <Route path="/mypage" element={<Mypage/>}/>
+      <Route path="/mypage_mento" element={<Mypage/>}/>
+      <Route path="/mypage_mentee" element={<Mypage_mentee/>}/>
 
     </Routes>
     </Router>

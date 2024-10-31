@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Modal from 'react-modal';
 
 
-function Mypage(){
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+function Mypage_mentee(){
+    const [score, setScore] = useState([false, false, false, false, false]);
     const navigate = useNavigate();
-
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const dummyList=[
         {
             name:"중국인",
@@ -27,13 +27,13 @@ function Mypage(){
             name:"김이박",
             age:12,
             tag:"미국/한국어",
-            staus:"대기중"
+            status:"대기중"
         },
         {
             name:"최감자",
             age:12,
             tag:"캐나다/한국어",
-            staus:"거절됨"
+            status:"거절됨"
         }
 
     ]
@@ -44,6 +44,13 @@ function Mypage(){
         tag:"한국/한국어",
         temp:70
     }
+    const starScore = index => {
+        let star = [...score];
+        for (let i = 0; i < 5; i++) {
+          star[i] = i <= index ? true : false;
+        }
+        setScore(star);
+      };
     const ChatList=({chatList})=>{
         return(
             <div className="Chat">
@@ -53,12 +60,12 @@ function Mypage(){
                         <div id="rowCont">
                     <div id="list_profile"></div>
                     <div id="main_cont">
-                        <div id="list_name">{data.name}({data.age}세)</div>
+                        <div id="list_name">{data.name} ({data.age}세)</div>
                         <div id="list_tag">#{data.tag}</div>
                        
                     </div>
-                    <div id="ect">
-                       
+                    <div id="ing_ect">
+                       <button id="review" onClick={()=>{openModal()}}>후기</button>
                     </div> 
                     </div>
                     {index < chatList.length - 1 && <div id="divider"></div>}
@@ -78,11 +85,11 @@ function Mypage(){
                         <div id="rowCont">
                     <div id="list_profile"></div>
                     <div id="main_cont">
-                        <div id="list_name">{data.name}({data.age}세)</div>
+                        <div id="list_name">{data.name} ({data.age}세)</div>
                         <div id="list_tag">#{data.tag}</div>
                        
                     </div>
-                    <div id="ect">
+                    <div id="list_ect">
                        {data.status}
                     </div> 
                     </div>
@@ -93,6 +100,16 @@ function Mypage(){
             </div>
         );
     };
+
+    const openModal = (data) => {
+     
+        
+        setModalIsOpen(true);
+    };
+    const closeModal = () => {
+        setModalIsOpen(false);
+        
+    };
     return(
         <div className="Mypage">
             <div id="titleCont">
@@ -101,7 +118,7 @@ function Mypage(){
             <div id="profile">
                 <div id="profile_img"></div>
                 <div id="ect">
-                    <div id="name">{userData.name}({userData.age}세)</div>
+                    <div id="name">{userData.name} ({userData.age}세)</div>
                     <div id="tag">#{userData.tag}</div>
                 </div>
                 <div id="toggleCont">
@@ -140,7 +157,34 @@ function Mypage(){
                     <button id="mypage" onClick={()=> navigate('/mypage')}></button>
                 </div>
             </div>
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                contentLabel="Pop up Message"
+                ariaHideApp={false}
+                className="review_popup"
+                overlayClassName="popup-overlay"
+            >
+               
+                <div id="submit_popup">
+                  <div id="popup_ment"> 후기를 남겨주세요!</div>
+                    <div id="star_cont">
+                        {Array.from({ length: 5 }).map((_, index) => (
+
+                        <div className={`${score[index] ? 'smile_active' : 'smile'}`} 
+                             key={index} 
+                             onClick={()=>starScore(index)}
+                             >
+
+                             </div>
+                        ))}
+                    </div>
+                  <button id='review_submit'onClick={()=>closeModal()}>완료</button>
+                 
+                </div>
+            </Modal>
+
         </div>
     );
 }
-export default Mypage
+export default Mypage_mentee;
