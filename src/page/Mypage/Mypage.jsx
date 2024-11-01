@@ -7,6 +7,7 @@ import { putUser } from "../../api/myPageApi/putUser";
 import { postRate } from "../../api/myPageApi/postRate";
 
 function Mypage(){
+    const [token, setToken] = useState('');
     const [rate,setRate] = useState({
         mentoId:0,
         temperature:0
@@ -14,7 +15,6 @@ function Mypage(){
     const [score, setScore] = useState([false, false, false, false, false]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const navigate = useNavigate();
-    const token = 'ya29.a0AeDClZCRyzxNkCxW-LrLxHAQ26O70wyCW4a7LVdWA-55p6T3R6NofO9X366Krn8FF-rDPPePFer1qC-jYZlvEu7T5PqK7W9Sp7X4R82Mh2CrXJoQxMsAVrGB4DaD2FzwRpYE6EE_Xwgvpl6wccGVSzp2KeLB2iwmUwaCgYKATkSARESFQHGX2Mi8e-0FJXRrW8rkbRHp-9YeQ0169';
     const [userData, setUserData] = useState({
 
         userInfo: {
@@ -29,6 +29,14 @@ function Mypage(){
         },
         Mentorings: []
     });
+    useEffect(() => {
+        // 로컬 스토리지에서 토큰 읽어오기
+        const storedToken = localStorage.getItem('accessToken');
+        console.log(storedToken);
+        if (storedToken) {
+            setToken(storedToken);
+        } 
+    }, []);
     const starScore = index => {
         let star = [...score];
         for (let i = 0; i < 5; i++) {

@@ -18,17 +18,18 @@ import ChatRoom from "./page/ChatRoom/ChatRoom";
 import Search from "./page/Search/Search";
 import Mypage from "./page/Mypage/Mypage";
 import Mypage_mentee from "./page/Mypage/Mypage_mentee";
-
+import { UserProvider } from "./context/UserContext";
 
 function App() {
   
   return (
+    <UserProvider>
     <Router>
     <Routes>
 
       <Route path="/home" element={<Main />} />
       <Route path="/login" element={<Login1 />} />
-      <Route path="/login_new" element={<Login_new />} />
+      <Route path="/" element={<Login_new />} />
       <Route path="/login_login" element={<Login_login />} />
       <Route path="/login_choose" element={<Login_choose />} />
       <Route path="/login2" element={<Login2 />} />
@@ -47,6 +48,7 @@ function App() {
 
     </Routes>
     </Router>
+    </UserProvider>
   );
 }
 

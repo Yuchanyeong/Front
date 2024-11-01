@@ -13,9 +13,10 @@ function Mypage_mentee(){
         mentoId:0,
         temperature:0
     });
+    const [token, setToken] = useState('');
+
     const [score, setScore] = useState([false, false, false, false, false]);
     const navigate = useNavigate();
-    const token = 'ya29.a0AeDClZCRyzxNkCxW-LrLxHAQ26O70wyCW4a7LVdWA-55p6T3R6NofO9X366Krn8FF-rDPPePFer1qC-jYZlvEu7T5PqK7W9Sp7X4R82Mh2CrXJoQxMsAVrGB4DaD2FzwRpYE6EE_Xwgvpl6wccGVSzp2KeLB2iwmUwaCgYKATkSARESFQHGX2Mi8e-0FJXRrW8rkbRHp-9YeQ0169';
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [userData, setUserData] = useState({
 
@@ -31,6 +32,15 @@ function Mypage_mentee(){
         },
         Mentorings: []
     });
+    useEffect(() => {
+        // 로컬 스토리지에서 토큰 읽어오기
+        const storedToken = localStorage.getItem('accessToken');
+        console.log(storedToken);
+        if (storedToken) {
+            setToken(storedToken);
+        } 
+       
+    }, []);
     const [newUserData,setNewUserData]=useState({
         nickName: "",
         age: 0,
@@ -175,7 +185,7 @@ function Mypage_mentee(){
                 <SubmitList submitList={submitList}/>
             </div>
             <div id="btnCon">
-                <button id="logout">로그아웃</button>
+                <button id="logout" >로그아웃</button>
                 <button id="delete">계정 탈퇴</button>
             </div>
             <div id="navi-con">

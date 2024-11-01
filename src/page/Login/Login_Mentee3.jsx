@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useContext,useEffect } from "react";
 import './Login_Mento4.css';  // CSS 파일을 import
 import countryList from '../../data/countries.json'; // country 파일
 import defaultProfileImage from '../../asset/account-circle.png';
 import BackButton from "../../components/BackButton";
+import { UserContext } from "../../context/UserContext";
+import { useNavigate } from 'react-router-dom';
+import { putLogin } from "../../api/loginApi/putLogin";
 
 function Login_Mentee3() {
+    const navigate = useNavigate();
+    const { User, updateUser } = useContext(UserContext);
+    const [token, setToken] = useState('');
+
     const [nickname, setNickname] = useState('');
     const [introduction, setIntroduction] = useState('');
     const [age, setAge] = useState('');
@@ -15,7 +22,14 @@ function Login_Mentee3() {
     const handleIntroductionChange = (e) => setIntroduction(e.target.value);
     const handleAgeChange = (e) => setAge(e.target.value);
     const handleNationalityChange = (e) => setNationality(e.target.value);
-
+    useEffect(() => {
+        // 로컬 스토리지에서 토큰 읽어오기
+        const storedToken = localStorage.getItem('accessToken');
+        console.log(storedToken);
+        if (storedToken) {
+            setToken(storedToken);
+        } 
+    }, []);
     const handleImageSelect = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -27,9 +41,22 @@ function Login_Mentee3() {
         setProfileImage(defaultProfileImage); // 기본 이미지로 재설정
     };
 
-    const handleNextPage = () => {
-        // 다음 페이지로 이동하는 로직 추가 (예: 페이지 이동 함수 또는 라우터)
-        console.log("다음 페이지로 이동");
+    const handleNextPage = async() => {
+        try {
+            console.log(User);
+            await putLogin(token,{
+                ...User,
+                nickName: nickname,
+                age: age,
+                country: nationality,
+                myInfo: introduction,
+            });
+            console.log('user data posted successfully');
+           navigate('/login_login');
+          } catch (error) {
+            console.error('Error posting user data:', error);
+          }
+          
     };
 
     const ageOptions = Array.from({ length: 100 }, (_, i) => i + 1);

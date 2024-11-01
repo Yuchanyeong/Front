@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import './Login2.css';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from "../../context/UserContext";
 
 function Login2() {
 
-
     const navigate = useNavigate();
+    const { User, updateUser } = useContext(UserContext);
 
     // 버튼 클릭 시 페이지 이동 함수
     const goToMentorPage = () => {
+        updateUser({isMento:true});
+        localStorage.setItem('isMento', true);
         navigate('../../Login_Mento1'); // 원하는 경로로 이동
     };
     const goToMenteePage = () => {
+        updateUser({isMento:false});
+        localStorage.setItem('isMento', false);
         navigate('../../Login_Mentee1'); // 원하는 경로로 이동
     };
 

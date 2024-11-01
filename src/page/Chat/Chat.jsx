@@ -13,12 +13,23 @@ function Chat() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedData, setSelectedData] = useState(null)
     const navigate = useNavigate(); 
-
+    const [token, setToken] = useState('');
     const [chatRooms, setChatRooms] = useState([]);
     const [ingchatRooms, setingChatRooms] = useState([]);
-
-    const token = 'ya29.a0AeDClZCRyzxNkCxW-LrLxHAQ26O70wyCW4a7LVdWA-55p6T3R6NofO9X366Krn8FF-rDPPePFer1qC-jYZlvEu7T5PqK7W9Sp7X4R82Mh2CrXJoQxMsAVrGB4DaD2FzwRpYE6EE_Xwgvpl6wccGVSzp2KeLB2iwmUwaCgYKATkSARESFQHGX2Mi8e-0FJXRrW8rkbRHp-9YeQ0169';
-
+    const [userType, setUserType] = useState('')
+    useEffect(() => {
+        // 로컬 스토리지에서 토큰 읽어오기
+        const storedToken = localStorage.getItem('accessToken');
+        const storedUserType = localStorage.getItem('isMento')
+        console.log(storedToken);
+        if (storedToken) {
+            setToken(storedToken);
+        } 
+        if(storedUserType === true){
+            setUserType('mento')
+        }else setUserType('mentee')
+        
+    }, []);
 
     const ChatList=({chatList})=>{
         const options = { month: 'long', day: 'numeric' };
@@ -119,7 +130,7 @@ function Chat() {
                         <button id="home" onClick={()=> navigate('/home')}></button>
                         <button id="chat" onClick={()=> navigate('/chat')}></button>
                         <button id="search" onClick={()=> navigate('/search')}></button>
-                        <button id="mypage" onClick={()=> navigate('/mypage')}></button>
+                        <button id="mypage" onClick={()=> navigate(`/mypage_${userType}`)}></button>
                     </div>
                 </div>
 

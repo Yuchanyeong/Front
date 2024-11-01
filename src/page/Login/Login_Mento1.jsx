@@ -1,22 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import './Login_Mento1.css';  // CSS 파일을 import
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from "../../context/UserContext";
 import BackButton from "../../components/BackButton";
 function Login_Mento1() {
     const navigate = useNavigate();
     const [showSubjectSelection, setShowSubjectSelection] = useState(false); // 과목 선택 화면 상태
     const [selectedSubjects, setSelectedSubjects] = useState([]); // 선택된 과목 상태
-
-    const goToMento2Page = () => {
+    const { User, updateUser } = useContext(UserContext);
+    const [mentoType, setMentoType] = useState("");
+    const goToMento2Page =() => {
+        updateUser({mentoType:mentoType,
+                    subjectTag:selectedSubjects});
+                    console.log(User);
         navigate('../../Login_Mento2'); // 원하는 경로로 이동
     };
 
     const handleMentorClick = (mentorType) => {
+        
         if (mentorType === 'major') {
-            setShowSubjectSelection(true); // 교과목 멘토 버튼 클릭 시 과목 선택 창 표시
+            setShowSubjectSelection(true);
+            const mentoType1 = mentorType;
+        setMentoType(mentoType1);
+        console.log('멘토타입:',mentoType); // 교과목 멘토 버튼 클릭 시 과목 선택 창 표시
         } else {
             setShowSubjectSelection(false); // 다른 멘토 버튼 클릭 시 과목 선택 창 숨김
+            const mentoType1 = mentorType;
+            setMentoType(mentoType1);
+            console.log('멘토타입:',mentoType);
             goToMento2Page(); // 다른 멘토 선택 시 바로 다음 페이지로 이동
+       
         }
     };
 

@@ -35,3 +35,77 @@
 }
 
 
+.signup_popup{
+    position: absolute;
+    width: 300px;
+    height: 500px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+    padding: 12;
+
+}
+.smile{
+ 
+width: 40px;
+height: 40px;
+background-image: url('../../asset/smile.png');
+margin-left: 4.5px;
+margin-right: 4.5px;
+
+
+}
+.smile_active{
+    width: 40px;
+    height: 40px;
+    background-image: url('../../asset/smile_active.png');
+    margin-left: 4.5px;
+    margin-right: 4.5px;
+}
+#star_cont{
+    display: flex;
+    flex-direction: row;
+    margin-top: 13px;
+    
+}
+#review_submit{
+    margin-top:11px;
+    
+    box-sizing: border-box;
+
+    width: 50px;
+    height: 34.8px;
+
+    background: #FFAD60;
+    border: 1px solid #000000;
+    border-radius: 3px;
+
+        font-family: 'NoonnuBasicGothicRegular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+       
+        color: #000000;
+
+} 
