@@ -5,9 +5,13 @@
     padding: 20px;
 }
 
-h2 {
+#profile-done {
+    width:120.88px;
+    height: 33px;
     margin-bottom: 20px;
     font-size: 24px;
+
+    font-family: 'NoonnuBasicGothicRegular';
 }
 
 .profile-image {
@@ -29,32 +33,107 @@ h2 {
     cursor: pointer;
 }
 
-.button-group5 {
+.profile-button-group {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+}
+
+.mento4-button{
+    
+    align-items: center;
+    position: relative;
+    width: 90px;
+    height: 45px; /* 높이를 넉넉하게 조정 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    border-width:0px;
+    padding: 0px;
+    box-sizing: border-box;
+    
+}
+
+
+
+#delete-profile{
+    background-image: url('../../asset/delete-profile.png');
+}
+
+#select-profile{
+    background-image: url('../../asset/select-profile.png');   
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+
     width: 300px;
 }
 
 input, select, textarea {
-    width: 100%;
+
     padding: 10px;
     font-size: 14px;
     margin-top: 5px;
+    font-family: 'NoonnuBasicGothicRegular';
+    color:#666666;
+    background-color: #D9D9D9;
+    border : none;
+    border-radius :5px;
 }
 
+label{
+    font-family: 'NoonnuBasicGothicRegular';
+    margin-top:20px;
+}
 textarea {
     resize: none;
-    height: 100px;
+    height: 120px;
+    font-family: 'NoonnuBasicGothicRegular';
+    background-color: #D9D9D9;
+    border : none;
+    border-radius :5px;
 }
 
-.mentee1-button:hover {
+.mento4-button:hover {
     background-color: rgba(0, 0, 0, 0.3); /* 어두운 오버레이 효과 */
     filter: brightness(0.8); /* 약간 어둡게 조정 */
+}
+
+/* 공통 select 스타일 */
+select {
+    appearance: none; /* 기본 화살표 제거 (크로스 브라우징) */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    
+   
+    background-image: url('../../asset/dropdown.png'); /* 커스텀 화살표 이미지 */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* 화살표 위치 조정 */
+    padding-right: 30px; /* 화살표 아이콘 공간 확보 */
+}
+
+.next-page-button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #6B4928;
+    background-color: #f8a85e;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'NoonnuBasicGothicRegular';
+    transition: background-color 0.3s;
+}
+
+.next-page-button:disabled {
+    color: white;
+    background-color: #ccc; /* 비활성화 시 연한 회색 */
+    cursor: not-allowed;
+}
+
+.next-page-button:hover:enabled {
+    background-color: #f8a85e;
 }

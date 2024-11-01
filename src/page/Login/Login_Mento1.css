@@ -70,3 +70,81 @@
 
 
 
+/* 팝업 스타일링 */
+.subject-selection-popup {
+    position: absolute; /* 기존 요소 위에 뜨게 함 */
+
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 310px;
+    max-width: 300px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    z-index: 1000; /* 기존 요소 위에 뜨도록 설정 */
+    text-align: center;
+}
+
+.subject-selection-title {
+    font-size: 20px;
+    margin-bottom: 40px;
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
+}
+
+
+.subject-tags span {
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+    border-radius:20px;
+    width:50px;
+
+}
+
+/* 선택된 과목 태그 스타일 */
+.subject-tag {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    margin: 5px;
+
+}
+
+.subject-tag.selected {
+    background-color: #F8A85E;
+    color: white;
+    border-color: #FFA726;
+}
+
+/* 확인 버튼 비활성화 스타일 */
+.confirm-button {
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
+    padding: 10px 20px;
+    background-color: #FFA726;
+    color: #6B4928;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top:50px;
+    width: 150px;
+
+}
+
+.confirm-button:disabled {
+    background-color: #ccc;
+    color: white;
+    cursor: not-allowed;
+    margin-top:50px;
+}
