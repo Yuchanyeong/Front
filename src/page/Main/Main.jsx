@@ -5,6 +5,7 @@ import "./Main.css";
 import { useNavigate } from "react-router-dom";
 
 import CountryQuizGame from "./CountryQuizGame";
+import FindIncorrectWordGame from "./FindIncorrectWordGame"; // 새 게임 컴포넌트 가져오기
 
 import FindIncorrectWordGame from "./FindIncorrectWordGame"; // 새 게임 컴포넌트 가져오기
 
