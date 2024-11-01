@@ -1,6 +1,7 @@
 import React from "react";
 import './Login_Mentee1.css';
 import { useNavigate } from 'react-router-dom';
+import BackButton from "../../components/BackButton";
 
 function Login_Mentee1() {
     
@@ -12,10 +13,11 @@ function Login_Mentee1() {
 
     return (
         <div className="Login_Mentee1-container">
+          <BackButton to="../../Login2" /> 
            <h2 className="mentee1-subtitle">안녕하세요, 멘티/학부모님!</h2>
            <h1 className="mentee1-title">어떤 멘토를 찾고 있나요?</h1>
             <div className="mentee1-button-group">
-                <button id="culture" className="mentee1-button" onClick={goToMentee2Page}>
+                <button id="culture" className="mentee1-button" onClick={goToMentee2Page} value="문화">
                 </button>
                 <button id="korean" className="mentee1-button" onClick={goToMentee2Page}>
                 </button>

@@ -86,6 +86,8 @@
 }
 
 .camera-button {
+    font-family: 'NoonnuBasicGothicRegular';
+    font-style: normal;
     padding: 10px 20px;
     background-color: #FFA726;
     color: white;
@@ -94,6 +96,7 @@
     font-size: 14px;
     margin-top: 10px;
     margin-left : 20px;
+    border: none;
 }
 
 .camera-preview {

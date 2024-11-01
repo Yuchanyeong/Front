@@ -1,7 +1,7 @@
 import React from "react";
 import './Login_Mento2.css';
 import { useNavigate } from 'react-router-dom';
-
+import BackButton from "../../components/BackButton";
 function Login_Mento2() {
 
     const navigate = useNavigate();
@@ -11,6 +11,7 @@ function Login_Mento2() {
     }
     return (
         <div className="Login_Mento2-container">
+            <BackButton to="../../Login_Mento1" /> 
             <h2 className="login_Mento2-title">본인 인증</h2>
 
             <div className="login_Mento2-button-group">
