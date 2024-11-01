@@ -29,7 +29,7 @@ function App() {
 
       <Route path="/main" element={<Main />} />
       <Route path="/login" element={<Login1 />} />
-      <Route path="/login_new" element={<Login_new />} />
+      <Route path="/" element={<Login_new />} />
       <Route path="/login_login" element={<Login_login />} />
       <Route path="/login_choose" element={<Login_choose />} />
       <Route path="/login2" element={<Login2 />} />

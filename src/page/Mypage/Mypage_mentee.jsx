@@ -185,7 +185,7 @@ function Mypage_mentee(){
                 <SubmitList submitList={submitList}/>
             </div>
             <div id="btnCon">
-                <button id="logout">로그아웃</button>
+                <button id="logout" >로그아웃</button>
                 <button id="delete">계정 탈퇴</button>
             </div>
             <div id="navi-con">
