@@ -298,7 +298,6 @@
       #rowCont{
         height: 70px;
         width: 329px;
-    
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
