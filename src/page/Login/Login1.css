@@ -7,11 +7,12 @@
 }
 
 .logo {
-    background-image: url('../../asset/Damento.png');
-    width: 260px;
-    height: 107px;
-    background-repeat: no-repeat;
-    background-position: center;
+  
+    background-image: url('../../asset/damento.png');
+    width: 260px; /* 로고 너비 */
+    height: 107px; /* 로고 높이 */
+    background-repeat: no-repeat; /* 이미지 반복 방지 */
+    background-position: center; /* 이미지 위치를 가운데로 */
     margin-bottom: 150px;
 }
 
