@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import './Login_new.css';  // CSS 파일을 import
-import axios from 'axios';
-
+import { useNavigate } from "react-router-dom";
+import { postSignup } from "../../api/loginApi/postSignup";
 function Login_new() {
     const [userid, setuserid] = useState('');
     const [userpassword, setuserpassword] = useState('');
-
+    const navigate = useNavigate();
     const handleUserIdChange = (e) => setuserid(e.target.value);
     const handleUserPasswordChange = (e) => setuserpassword(e.target.value);
 
     const validateInput = () => {
-        // 아이디 조건: 5자 이상 20자 이하
+        
         const isUserIdValid = userid.length >= 5 && userid.length <= 20;
         
         // 비밀번호 조건: 숫자, 영문자, 특수문자 조합 (8자 이상)
@@ -30,11 +30,31 @@ function Login_new() {
     };
 
     const handleNextPage = () => {
-        // 조건이 모두 맞는지 확인
         if (validateInput()) {
-            console.log("다음 페이지로 이동");
+            const PostSignup = async()=>{
+                try {
+                    const loginResponse = await postSignup( userid, userpassword);
+                    console.log("다음 페이지로 이동");
+                    const accessToken = loginResponse.token // Optional chaining 추가
+                    if (!accessToken) {
+                        throw new Error("Access token not found in response headers");
+                    }
+                     localStorage.setItem('accessToken', accessToken);
+                    navigate('/login2')
+                } catch (error) {
+                    console.error('Error fetching mypage data:', error);
+                    
+                        const errorMessage = error.response.data.message || error.message;
+                        if (errorMessage === "이미 존재하는 아이디입니다.") {
+                            alert('이미 존재하는 아이디입니다.');
+                        } 
+                }
+            };
+            PostSignup();
+            
             // 실제 회원가입 처리나 페이지 이동 로직을 여기에 추가
         }
+       
     };
 
     const isButtonEnabled_new = userid && userpassword;

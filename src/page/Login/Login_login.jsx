@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './Login_new.css';  // CSS 파일을 import
-import axios from 'axios';
-
+import {postLogin} from '../../api/loginApi/postLogin';
+import { useNavigate } from "react-router-dom";
 
 
 function Login_login() {
@@ -9,10 +9,18 @@ function Login_login() {
     const [userpassword, setuserpassword] = useState('');
     const handleUserIdChange = (e) => setuserid(e.target.value);
     const handleUserPasswordChange = (e) => setuserpassword(e.target.value);
+    const navigate = useNavigate();
 
-    const handleNextPage = () => {
-        // 다음 페이지로 이동하는 로직 추가 (예: 페이지 이동 함수 또는 라우터)
-        console.log("다음 페이지로 이동");
+    const handleNextPage = async() => {
+        try {
+        await postLogin(userid,userpassword);
+        console.log('user data posted successfully');
+       navigate('/home');
+      } catch (error) {
+        console.error('Error posting user data:', error);
+        alert('아이디 혹은 비밀번호가 틀립니다.')
+      }
+      
     };
     const isButtonEnabled_new = userid && userpassword;
     return (
