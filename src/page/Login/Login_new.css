@@ -1,0 +1,60 @@
+.login-new-button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #6B4928;
+    background-color: #f8a85e;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'NoonnuBasicGothicRegular';
+    transition: background-color 0.3s;
+}
+
+.login-new-button:disabled {
+    color: white;
+    background-color: #ccc; /* 비활성화 시 연한 회색 */
+    cursor: not-allowed;
+}
+
+.login-new-button:hover:enabled {
+    background-color: #f8a85e;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+.input-container input {
+    width: 100%;
+    padding-right: 80px; /* 버튼 공간 확보 */
+    box-sizing: border-box;
+}
+
+
+.label_new{
+    font-family: 'NoonnuBasicGothicRegular';
+    margin-top: 20px;
+}
+
+.logo_new {
+  
+    background-image: url('../../asset/damento.png');
+    width: 260px; /* 로고 너비 */
+    height: 107px; /* 로고 높이 */
+    background-repeat: no-repeat; /* 이미지 반복 방지 */
+    background-position: center; /* 이미지 위치를 가운데로 */
+    margin-bottom: 100px;
+}
+
+.info-login{
+    font-family: 'NoonnuBasicGothicRegular';
+    color: #666666;
+    font-size: 12px;
+}
+
+.duplicate-check-button:hover {
+    background-color: rgba(0, 0, 0, 0.3); /* 어두운 오버레이 효과 */
+    filter: brightness(0.8); /* 약간 어둡게 조정 */
+}
