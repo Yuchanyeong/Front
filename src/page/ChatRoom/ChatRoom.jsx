@@ -28,39 +28,46 @@ function ChatRoom() {
     
 }, []);
 useEffect(() => {
-  if (token) {
-      // socket 초기화
-      const newSocket = io("https://luckymozzi.store", {
-          extraHeaders: {
-              Authorization: `Bearer ${token}`
-          }
-      });
-      setSocket(newSocket);
-      
-     
-      return () => {
-          newSocket.disconnect(); // 컴포넌트 언마운트 시 소켓 연결 해제
-      };
-  }
-}, [token]);
-useEffect(() => {
-  if (!token) return; // 토큰이 없으면 데이터를 가져오지 않음
+  if (!token) return; // 토큰이 없으면 작업하지 않음
+
+  // 소켓 초기화
+  const newSocket = io("https://luckymozzi.store", {
+    extraHeaders: {
+      Authorization: token
+    }
+  });
+
+  newSocket.on('connect', () => {
+    console.log('소켓 연결됨:', newSocket.id);
+    // 방에 참여
+    newSocket.emit("joinRoom", newSocket.id, (response) => {
+      console.log('소켓 연결 완료', response);
+    });
+  });
+
+  newSocket.on('connect_error', (error) => {
+    console.error('소켓 연결 실패:', error);
+  });
+
+  setSocket(newSocket);
 
   // 마이페이지 정보를 가져오는 함수 호출
   const fetchChatData = async () => {
-      try {
-          const ChatData = await getChatData(token, state);
-          setMessages(ChatData.chatMessages);
-      } catch (error) {
-          console.error('Error fetching mypage data:', error);
-      }
-      if(socket){
-      socket.emit("joinRoom", state,(response)=>{console.log('소켓연결완료',response);});
-      }else{console.log('연결안댐')}
+    try {
+      const ChatData = await getChatData(token, state);
+      setMessages(ChatData.chatMessages);
+    } catch (error) {
+      console.error('Error fetching mypage data:', error);
+    }
   };
 
   fetchChatData();
-}, [token]);
+
+  return () => {
+    newSocket.disconnect(); // 컴포넌트 언마운트 시 소켓 연결 해제
+  };
+}, [token, state]); // state도 의존성 배열에 추가
+
   const openModal = (data) => {
      
     
@@ -108,12 +115,13 @@ const closeModal = () => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
+      console.log('전송할 메시지:', messageContent);
       const message = {
         messageContent: messageContent,
         sender: 'user'
       };
       onMessageSubmit(message);
-      setMessageContent('');
+     
     };
 
     return (
@@ -140,10 +148,8 @@ const closeModal = () => {
       created_at:""
     }
     if (socket) {
-    socket.emit("sendChat", state, newChatMessage,(response) => {
-      // 서버에서 확인 응답을 받았을 때
-      console.log('메시지 전송 확인:', response);
-  });
+    socket.emit("sendChat", state, newChatMessage);
+    console.log(newChatMessage);
    
     }else{console.log('소켓노')} 
   };
