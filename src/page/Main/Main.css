@@ -51,12 +51,32 @@
 }
 
 .game-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 90%;
-    height: 450px;
     background-color:#FFEFC2;
     margin-top: 30px ;
     border-radius: 8px;
     box-shadow: 0px 0px 5px #444;
+    text-align: center;
+    justify-content: space-around;
+}
+
+#game{
+    font-family: 'NoonnuBasicGothicRegular';
+    border-radius: 8px;
+    width:140px;
+    height: 30px;
+    margin : 10px;
+    margin-bottom: 50px;
+    
+}
+
+#gamename{
+    font-family: 'NoonnuBasicGothicRegular';
+    margin-bottom:50px;
+    font-size: 40px;
 }
 
 /* Feature Section */

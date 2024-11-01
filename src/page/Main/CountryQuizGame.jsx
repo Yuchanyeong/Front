@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./CountryQuizGame.css";
 
-// 전체 퀴즈 데이터
 const quizData = [
     { greeting: "こんにちは", options: ["일본", "한국", "중국", "태국"], answer: "일본" },
     { greeting: "안녕하세요", options: ["한국", "일본", "중국", "베트남"], answer: "한국" },
@@ -30,89 +29,78 @@ const quizData = [
     { greeting: "Mingalaba", options: ["미얀마", "태국", "라오스", "방글라데시"], answer: "미얀마" },
     { greeting: "Tere", options: ["에스토니아", "라트비아", "리투아니아", "핀란드"], answer: "에스토니아" },
     { greeting: "Konnichiwa", options: ["일본", "중국", "한국", "베트남"], answer: "일본" }
-  ];
-  
-  
-function CountryQuizGame() {
-  const [questions, setQuestions] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0);
-  const [showFeedback, setShowFeedback] = useState(null);
-  const [isGameOver, setIsGameOver] = useState(false);
-  const [isOptionDisabled, setIsOptionDisabled] = useState(false);
+];
 
-  useEffect(() => {
-    const shuffledQuestions = [...quizData].sort(() => Math.random() - 0.5);
-    setQuestions(shuffledQuestions.slice(0, 5));
-  }, []);
+function CountryQuizGame({ onGameEnd }) {
+    const [questions, setQuestions] = useState([]);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [score, setScore] = useState(0);
+    const [showFeedback, setShowFeedback] = useState(null);
+    const [isGameOver, setIsGameOver] = useState(false);
+    const [isOptionDisabled, setIsOptionDisabled] = useState(false);
 
-  const handleOptionClick = (selectedOption) => {
-    setIsOptionDisabled(true); // 선택 후 옵션 비활성화
-    const isCorrect = selectedOption === questions[currentQuestion].answer;
-    if (isCorrect) {
-      setScore(score + 1);
-      setShowFeedback("정답입니다!");
-    } else {
-      setShowFeedback(`오답입니다. 정답은 ${questions[currentQuestion].answer}입니다.`);
-    }
-  };
+    useEffect(() => {
+        const shuffledQuestions = [...quizData].sort(() => Math.random() - 0.5);
+        setQuestions(shuffledQuestions.slice(0, 5));
+    }, []);
 
-  const nextQuestion = () => {
-    setShowFeedback(null);
-    setIsOptionDisabled(false); // 다음 문제로 넘어가면 옵션 다시 활성화
-    if (currentQuestion + 1 < questions.length) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else {
-      setIsGameOver(true);
-    }
-  };
+    const handleOptionClick = (selectedOption) => {
+        setIsOptionDisabled(true);
+        const isCorrect = selectedOption === questions[currentQuestion].answer;
+        if (isCorrect) {
+            setScore(score + 1);
+            setShowFeedback("정답입니다!");
+        } else {
+            setShowFeedback(`오답입니다. 정답은 ${questions[currentQuestion].answer}입니다.`);
+        }
+    };
 
-  const restartQuiz = () => {
-    const shuffledQuestions = [...quizData].sort(() => Math.random() - 0.5);
-    setQuestions(shuffledQuestions.slice(0, 5));
-    setCurrentQuestion(0);
-    setScore(0);
-    setIsGameOver(false);
-    setShowFeedback(null);
-    setIsOptionDisabled(false);
-  };
+    const nextQuestion = () => {
+        setShowFeedback(null);
+        setIsOptionDisabled(false);
+        if (currentQuestion + 1 < questions.length) {
+            setCurrentQuestion(currentQuestion + 1);
+        } else {
+            setIsGameOver(true);
+        }
+    };
 
-  return (
-    <div className="quiz-container">
-      {isGameOver ? (
-        <div className="game-over">
-          <h2>퀴즈 종료!</h2>
-          <p className="greeting">점수: {score} / {questions.length}</p>
-          <button id="next-quiz-button" onClick={restartQuiz}>다시 퀴즈 시작</button>
-        </div>
-      ) : (
-        questions.length > 0 && (
-          <div className="question-container">
-            <h2 id="quiz-title">이 인사말은 어느 나라의 말일까요?</h2>
-            <p className="greeting">{questions[currentQuestion].greeting}</p>
-            <div className="options">
-              {questions[currentQuestion].options.map((option, index) => (
-                <button
-                  className="options_button"
-                  key={index}
-                  onClick={() => handleOptionClick(option)}
-                  disabled={isOptionDisabled} // 옵션 비활성화 여부 적용
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-            {showFeedback && (
-              <div className="feedback">
-                <p>{showFeedback}</p>
-                <button id="next-quiz-button" onClick={nextQuestion}>다음 문제로</button>
-              </div>
+    return (
+        <div className="quiz-container">
+            {isGameOver ? (
+                <div className="game-over">
+                    <h2>퀴즈 종료!</h2>
+                    <p className="greeting">점수: {score} / {questions.length}</p>
+                    <button id="next-quiz-button" onClick={onGameEnd}>게임 선택 화면으로 돌아가기</button>
+                </div>
+            ) : (
+                questions.length > 0 && (
+                    <div className="question-container">
+                        <h2 id="quiz-title">이 인사말은 어느 나라의 말일까요?</h2>
+                        <p className="greeting">{questions[currentQuestion].greeting}</p>
+                        <div className="options">
+                            {questions[currentQuestion].options.map((option, index) => (
+                                <button
+                                    className="options_button"
+                                    key={index}
+                                    onClick={() => handleOptionClick(option)}
+                                    disabled={isOptionDisabled}
+                                >
+                                    {option}
+                                </button>
+                            ))}
+                        </div>
+                        {showFeedback && (
+                            <div className="feedback">
+                                <p>{showFeedback}</p>
+                                <button id="next-quiz-button" onClick={nextQuestion}>다음 문제로</button>
+                            </div>
+                        )}
+                    </div>
+                )
             )}
-          </div>
-        )
-      )}
-    </div>
-  );
+        </div>
+    );
 }
 
 export default CountryQuizGame;
