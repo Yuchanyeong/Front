@@ -12,6 +12,10 @@ import Login_Mento2 from './page/Login/Login_Mento2';
 import Login_Mento3 from './page/Login/Login_Mento3';
 import Login_Mento4 from './page/Login/Login_Mento4';
 import Chat from './page/Chat/Chat';
+import ChatRoom from "./page/ChatRoom/ChatRoom";
+import Search from "./page/Search/Search";
+import Mypage from "./page/Mypage/Mypage";
+import Mypage_mentee from "./page/Mypage/Mypage_mentee";
 
 
 function App() {
@@ -32,6 +36,11 @@ function App() {
       <Route path="/login_mentee2" element={<Login_Mentee2 />} />
       <Route path="/login_mentee3" element={<Login_Mentee3 />} />
       <Route path="/chat" element={<Chat/>}/>
+      <Route path="/chatroom" element={<ChatRoom/>}/>
+      <Route path="/search" element={<Search/>}/>
+      <Route path="/mypage_mento" element={<Mypage/>}/>
+      <Route path="/mypage_mentee" element={<Mypage_mentee/>}/>
+
     </Routes>
     </Router>
   );
