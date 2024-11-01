@@ -3,96 +3,31 @@ import Tabs from "../Chat/Tabs";
 import "./Search.css";
 import { useNavigate } from "react-router-dom";
 import Modal from 'react-modal';
+import { getUserList } from "../../api/userList/getUserList";
 
 function Search(){
 
 const [modalIsOpen, setModalIsOpen] = useState(false);
 const [selectedData, setSelectedData] = useState(null)
 const navigate = useNavigate();  
-const dummyList = [
-    {
-        id:1,
-        name:"김선생",
-        ment:"월요일 가능한가요?",
-        time:"오후 3:00",
-        tag:"#문화",
-        intro:"한국외국어대학교 영어영문학 전공했습니다. 편하게 문의 주세요~ 주로 한국의 전통 문화에 대해...",
-        num:1
-    },
-    {
-        id:2,
-        name:"닉네임",
-        ment:"이번 주도 3시인가요?",
-        time:"오후 1:00",
-        num:3
-    },
-    {
-        id:3,
-        name:"김선생",
-        ment:"안녕하세요^^",
-        time:"오후 1:36",
-        num:4
-    },
-    {
-        id:1,
-        name:"김선생",
-        ment:"월요일 가능한가요?",
-        time:"오후 3:00",
-        num:1
-    },
-    {
-        id:2,
-        name:"닉네임",
-        ment:"이번 주도 3시인가요?",
-        time:"오후 1:00",
-        num:3
-    },
-    {
-        id:3,
-        name:"김선생",
-        ment:"안녕하세요^^",
-        time:"오후 1:36",
-        num:4
-    },
-    {
-        id:2,
-        name:"닉네임",
-        ment:"이번 주도 3시인가요?",
-        time:"오후 1:00",
-        num:3
-    },
-    {
-        id:3,
-        name:"김선생",
-        ment:"안녕하세요^^",
-        time:"오후 1:36",
-        num:4
-    }
-]
+const token = 'ya29.a0AeDClZCRyzxNkCxW-LrLxHAQ26O70wyCW4a7LVdWA-55p6T3R6NofO9X366Krn8FF-rDPPePFer1qC-jYZlvEu7T5PqK7W9Sp7X4R82Mh2CrXJoQxMsAVrGB4DaD2FzwRpYE6EE_Xwgvpl6wccGVSzp2KeLB2iwmUwaCgYKATkSARESFQHGX2Mi8e-0FJXRrW8rkbRHp-9YeQ0169';
+const [mentoData,setmentoData]=useState({FindMentos:[]})
+useEffect(() => {
+    if (!token) return; // 토큰이 없으면 데이터를 가져오지 않음
 
-const dummyList1 = [
-    {
-        id:1,
-        name:"김선생",
-        ment:"월요일 입니다~",
-        time:"오후 3:00",
-        num:1
-    },
-    {
-        id:2,
-        name:"닉네임1",
-        ment:"3시인가요?",
-        time:"오후 1:00",
-        num:3
-    },
-    {
-        id:3,
-        name:"김선생1",
-        ment:"안녕^^",
-        time:"오후 1:36",
-        num:4
-    }
-]
+    // 마이페이지 정보를 가져오는 함수 호출
+    const fetchMypageData = async () => {
+        try {
+            const mentoData = await getUserList(token);
+            setmentoData(mentoData);
+        } catch (error) {
+            console.error('Error fetching mypage data:', error);
+        }
+    };
+
+    fetchMypageData();
+}, [token]);
+
 const ChatList=({chatList})=>{
     return(
         <div className="Chat">
@@ -102,17 +37,18 @@ const ChatList=({chatList})=>{
                 <div id="profile"></div>
                 <div id="main_cont">
                     <div id="nameCont">
-                    <div id="name">{data.name}</div>
-                    <div id="tag">{data.tag}</div>
+                    <div id="name">{data.mentoNick}</div>
+                    <div id="tag">#{data.subjectTag}</div>
                     </div>
-                    <div id="ment">{data.intro}</div>
+                    <div id="ment">{data.mentoInfo}</div>
                 </div>
                 </button>
             ))}
            
         </div>
     );
-};
+}; 
+const filteredMentosByCulture = mentoData.FindMentos.filter(data => data.subjectTag === "JavaScript");
 
 const openModal = (data) => {
  
@@ -133,12 +69,12 @@ return (
                 <Tabs>
                     <div label="전체">
                       
-                    <ChatList chatList={dummyList}/>
+                    <ChatList chatList={mentoData.FindMentos}/>
                     </div>
                     
                         
-                    <div label="#문화" > 
-                    <ChatList chatList={dummyList1}/>
+                    <div label="#JavaScript" > 
+                    <ChatList chatList={filteredMentosByCulture}/>
                      </div>
                 </Tabs>
             </div>
@@ -168,11 +104,11 @@ return (
                 <div id="modal_cont">
                 <div id="modal_img"></div>
                 <div id="modal_ect">
-                    <div id="modal_name">{selectedData?.name}</div>
-                    <div id="modal_tag">{selectedData?.tag}</div>
+                    <div id="modal_name">{selectedData?.mentoNick}</div>
+                    <div id="modal_tag">#{selectedData?.subjectTag}</div>
                 </div>
                 </div>
-                <div id="modal_intro">{selectedData?.intro}</div>
+                <div id="modal_intro">{selectedData?.mentoInfo}</div>
                 <button id="goChat" onClick={()=> navigate('/chatroom')}>채팅하기</button>
             </div>
              ) : null} 
