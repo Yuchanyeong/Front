@@ -16,7 +16,7 @@ function BackButton({ to }) {
 
     return (
         <button className="back-button" onClick={goBack}>
-            ← 뒤로가기
+            ←
         </button>
     );
 }
