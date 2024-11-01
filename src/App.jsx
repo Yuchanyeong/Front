@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import Main from './page/Main/Main';
 import Login1 from './page/Login/Login1';
+import Login_new from './page/Login/Login_new';
+import Login_login from './page/Login/Login_login';
+import Login_choose from './page/Login/Login_choose';
 import Login2 from './page/Login/Login2';
 import Login_Mentee1 from './page/Login/Login_Mentee1';
 import Login_Mentee2 from './page/Login/Login_Mentee2';
@@ -25,6 +28,9 @@ function App() {
 
       <Route path="/main" element={<Main />} />
       <Route path="/login" element={<Login1 />} />
+      <Route path="/login_new" element={<Login_new />} />
+      <Route path="/login_login" element={<Login_login />} />
+      <Route path="/login_choose" element={<Login_choose />} />
       <Route path="/login2" element={<Login2 />} />
       <Route path="/login_mento1" element={<Login_Mento1 />} />
       <Route path="/login_mento2" element={<Login_Mento2 />} />
