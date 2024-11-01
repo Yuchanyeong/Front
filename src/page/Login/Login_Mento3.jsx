@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import './Login_Mento3.css';  // CSS 파일을 import
-
+import { useNavigate } from 'react-router-dom';
+import BackButton from "../../components/BackButton";
 function Login_Mento3() {
     const [selectedFile, setSelectedFile] = useState(null); // 업로드한 파일 상태
     const [cameraEnabled, setCameraEnabled] = useState(false); // 카메라 상태
@@ -16,6 +17,13 @@ function Login_Mento3() {
             setCameraEnabled(false); // 파일 선택 시 카메라 비활성화
         }
     };
+
+    const navigate = useNavigate();
+
+    const goToMento4Page = () => {
+        navigate('../../Login_Mento4'); // 원하는 경로로 이동
+    }
+
 
     // 카메라 활성화
     const enableCamera = async () => {
@@ -47,6 +55,7 @@ function Login_Mento3() {
 
     return (
         <div className="Login_Mento3-container">
+            <BackButton to="../../Login_Mento2" /> 
             <h1 className="mento3-title">학력 인증</h1>
             <h2 className="mento3-subtitle">
                 학적 상태를 확인할 수 있는<br />
@@ -83,7 +92,7 @@ function Login_Mento3() {
                     )}
                 </div>
             </div>
-            <button id="schola-button" className="mento3-button"></button>
+            <button id="schola-button" className="mento3-button" onClick={goToMento4Page}></button>
         </div>
     );
 }

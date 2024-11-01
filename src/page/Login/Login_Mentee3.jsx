@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import './Login_Mentee3.css';  // CSS 파일을 import
+import './Login_Mento4.css';  // CSS 파일을 import
 import countryList from '../../data/countries.json'; // country 파일
 import defaultProfileImage from '../../asset/account-circle.png';
-
+import BackButton from "../../components/BackButton";
 
 function Login_Mentee3() {
     const [nickname, setNickname] = useState('');
@@ -39,6 +39,7 @@ function Login_Mentee3() {
 
     return (
        <div className="profile-container">
+        <BackButton to="../../Login_Mentee2" /> 
             <h2>{isButtonEnabled ? "프로필 완성!" : " "}</h2>
 
             <div className="profile-image">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './Login_Mento1.css';  // CSS 파일을 import
 import { useNavigate } from 'react-router-dom';
-
+import BackButton from "../../components/BackButton";
 function Login_Mento1() {
     const navigate = useNavigate();
     const [showSubjectSelection, setShowSubjectSelection] = useState(false); // 과목 선택 화면 상태
@@ -35,7 +35,9 @@ function Login_Mento1() {
     const isConfirmButtonDisabled = selectedSubjects.length === 0;
 
     return (
+        
         <div className="Login_Mento1-container">
+            <BackButton to="../../Login2" /> 
             <h2 className="mento1-subtitle">안녕하세요, 멘토님!</h2>
             <h1 className="mento1-title">본인은 어떤 멘토인가요?</h1>
 
