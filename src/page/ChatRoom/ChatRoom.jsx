@@ -118,7 +118,7 @@ const closeModal = () => {
       console.log('전송할 메시지:', messageContent);
       const message = {
         messageContent: messageContent,
-        sender: 'user'
+        sender: ''
       };
       onMessageSubmit(message);
      
@@ -142,16 +142,16 @@ const closeModal = () => {
 
   const handleMessageSubmit = async (message) => {
     setMessages((prevMessages) => [...prevMessages, message]);
-    const newChatMessage = {
-      writerId:message.sender,
-      messageContent:message.messageContent,
-      created_at:""
+    const data = {
+      chatRoomId:state.chatRoomId,
+      newChatMessage:{
+      messageContent:message.messageContent}
     }
     if (socket) {
-    socket.emit("sendChat", state, newChatMessage);
-    console.log(newChatMessage);
+    socket.emit("sendChat", data);
+    console.log(state, data);
    
-    }else{console.log('소켓노')} 
+    }else{console.log('소켓 설정이 안됨')} 
   };
 
   
