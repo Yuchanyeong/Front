@@ -5,7 +5,7 @@ import { useNavigate,useLocation } from "react-router-dom";
 import Modal from 'react-modal';
 import { getUserList } from "../../api/userList/getUserList";
 import { io } from "socket.io-client";
-
+import { postJoinChatroom } from "../../api/chatroomApi/postJoinChatroom";
 function Search() {
     const [userType, setUserType] = useState('')
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -15,6 +15,7 @@ function Search() {
     const [token, setToken] = useState(null);
     const [mentoData, setmentoData] = useState({ FindMentos: [] });
     const [socket, setSocket] = useState(null); // socket을 상태로 관리
+   const [chatroomid,setChatroomid]=useState(0);
     useEffect(() => {
         // 로컬 스토리지에서 토큰 읽어오기
         const storedToken = localStorage.getItem('accessToken');
@@ -77,10 +78,16 @@ function Search() {
     };
 
     const handleJoinChat = async () => {
+        
         if (selectedData) {
-            const chatRoomId = selectedData.mentoId; // selectedData에서 mentoId 가져오기
-            
-            navigate('/chatroom',{ state: { chatRoomId: chatRoomId } })
+            try {
+                const chatRoomId = await postJoinChatroom(token,{mentoId: selectedData.mentoId});
+                setChatroomid(chatRoomId.chatRoomId);
+                navigate('/chatroom',{ state: { chatRoomId: chatRoomId.chatRoomId } })
+            } catch (error) {
+                console.error('Error fetching mypage data:', error);
+            }
+           
         } else {
             console.error("No selected data to join the chat");
         }

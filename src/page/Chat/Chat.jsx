@@ -16,7 +16,9 @@ function Chat() {
     const [token, setToken] = useState('');
     const [chatRooms, setChatRooms] = useState([]);
     const [ingchatRooms, setingChatRooms] = useState([]);
-    const [userType, setUserType] = useState('')
+    const [userType, setUserType] = useState('');
+    const [chatroomid,setChatroomid]=useState(0);
+
     useEffect(() => {
         // 로컬 스토리지에서 토큰 읽어오기
         const storedToken = localStorage.getItem('accessToken');
@@ -63,7 +65,20 @@ function Chat() {
         setModalIsOpen(false);
         
     };
-
+    const handleJoinChat = async () => {
+        
+        if (selectedData) {
+            try {
+                setChatroomid(selectedData.idChatRoom);
+                navigate('/chatroom',{ state: { chatRoomId:selectedData.idChatRoom  } })
+            } catch (error) {
+                console.error('Error fetching mypage data:', error);
+            }
+           
+        } else {
+            console.error("No selected data to join the chat");
+        }
+    };
     useEffect(() => {
         if (!token) return; // 토큰이 없으면 데이터를 가져오지 않음
 
@@ -155,7 +170,7 @@ function Chat() {
                     </div>
                     </div>
                     <div id="modal_intro">{selectedData?.intro}</div>
-                    <button id="goChat" onClick={()=> navigate('/chatroom')}>채팅하기</button>
+                    <button id="goChat" onClick={()=> handleJoinChat(selectedData)}>채팅하기</button>
                 </div>
                  ) : null} 
             </Modal>
