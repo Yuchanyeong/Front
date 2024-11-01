@@ -2,48 +2,62 @@ import React, { useState, useEffect} from "react";
 import "./Mypage.css";
 import { useNavigate } from "react-router-dom";
 import Modal from 'react-modal';
+import { getUser } from "../../api/myPageApi/getUser";
+import { putUser } from "../../api/myPageApi/putUser";
+import { postRate } from "../../api/myPageApi/postRate";
+
 
 
 function Mypage_mentee(){
+    const [rate,setRate] = useState({
+        mentoId:0,
+        temperature:0
+    });
     const [score, setScore] = useState([false, false, false, false, false]);
     const navigate = useNavigate();
+    const token = 'ya29.a0AeDClZCRyzxNkCxW-LrLxHAQ26O70wyCW4a7LVdWA-55p6T3R6NofO9X366Krn8FF-rDPPePFer1qC-jYZlvEu7T5PqK7W9Sp7X4R82Mh2CrXJoQxMsAVrGB4DaD2FzwRpYE6EE_Xwgvpl6wccGVSzp2KeLB2iwmUwaCgYKATkSARESFQHGX2Mi8e-0FJXRrW8rkbRHp-9YeQ0169';
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const dummyList=[
-        {
-            name:"중국인",
-            age:12,
-            tag:"중국/한국어"
+    const [userData, setUserData] = useState({
+
+        userInfo: {
+            age :0,
+            etcTag:"",
+            mentoType: "",
+            myInfo:"",
+            nickName:"",
+            picture: "",
+            subjectTag:"",
+            temperature:0
         },
-        {
-            name:"남아공",
-            age:8,
-            tag:"남아공/한국어"
-        }
+        Mentorings: []
+    });
+    const [newUserData,setNewUserData]=useState({
+        nickName: "",
+        age: 0,
+        mentoType: "", // 문화 | 한국어 | 교과목 | 기타
+        subjectTag: "",
+        etcTag: "",
+        myInfo: ""
+    })
+    useEffect(() => {
+        if (!token) return; // 토큰이 없으면 데이터를 가져오지 않음
 
-    ]
+        // 마이페이지 정보를 가져오는 함수 호출
+        const fetchMypageData = async () => {
+            try {
+                const mypageData = await getUser(token);
+                setUserData(mypageData);
+                setNewUserData(mypageData.userInfo);
+            } catch (error) {
+                console.error('Error fetching mypage data:', error);
+            }
+        };
 
-    const dummyList1=[
-        {
-            name:"김이박",
-            age:12,
-            tag:"미국/한국어",
-            status:true
-        },
-        {
-            name:"최감자",
-            age:12,
-            tag:"캐나다/한국어",
-            status:false
-        }
+        fetchMypageData();
+    }, [token]);
 
-    ]
-
-    const userData={
-        name:"닉네임",
-        age:22,
-        tag:"한국/한국어",
-        temp:70
-    }
+    const ingList = userData.Mentorings.filter(data => data.matchStatus === "accepted");
+    const submitList = userData.Mentorings.filter(data => data.matchStatus === "applied"||data.matchStatus ==="declined" )
     const starScore = index => {
         let star = [...score];
         for (let i = 0; i < 5; i++) {
@@ -56,12 +70,12 @@ function Mypage_mentee(){
             <div className="Chat">
                 
                 {chatList.map((data, index)=>(
-                    <button id="chatCont"  key={`${data.id}-${index}`}>
+                    <button id="chatCont"  key={`${data.mentoringId}-${index}`}>
                         <div id="rowCont">
                     <div id="list_profile"></div>
                     <div id="main_cont">
-                        <div id="list_name">{data.name} ({data.age}세)</div>
-                        <div id="list_tag">#{data.tag}</div>
+                        <div id="list_name">{data.userNick} ({data.userAge}세)</div>
+                        <div id="list_tag">#{data.subjectTag}</div>
                        
                     </div>
                     <div id="ing_ect">
@@ -81,16 +95,16 @@ function Mypage_mentee(){
             <div className="Chat">
                 
                 {submitList.map((data, index)=>(
-                    <button id="chatCont"  key={`submit${data.id}-${index}`}>
+                    <button id="chatCont"  key={`submit${data.mentoringId}-${index}`}>
                         <div id="rowCont">
                     <div id="list_profile"></div>
                     <div id="main_cont">
-                        <div id="list_name">{data.name} ({data.age}세)</div>
-                        <div id="list_tag">#{data.tag}</div>
+                        <div id="list_name">{data.userNick} ({data.userAge}세)</div>
+                        <div id="list_tag">#{data.subjectTag}</div>
                        
                     </div>
-                    <div id="list_ect" className={`${data.status ? 'status_applied' : 'status_declined'}`}>
-                      {data.status ? "대기중" : "거절됨"}
+                    <div id="list_ect" className={`${data.matchStatus === "applied"? 'status_applied' : 'status_declined'}`}>
+                      {data.matchStatus === "applied" ? "대기중" : "거절됨"}
                     </div> 
                     </div>
                     {index < submitList.length - 1 && <div id="divider"></div>}
@@ -102,14 +116,25 @@ function Mypage_mentee(){
     };
 
     const openModal = (data) => {
-     
-        
         setModalIsOpen(true);
     };
     const closeModal = () => {
-        setModalIsOpen(false);
-        
+        setModalIsOpen(false);    
     };
+    const handleModify= async()=>{
+        try {
+           await putUser(token, newUserData);
+        } catch (error) {
+            console.error('Error modify mypage data:', error);
+        }
+    }
+    const handleIntroduceChange = (event) => {
+        const { value } = event.target;
+        setNewUserData((prevData) => ({
+          ...prevData,
+          myInfo: value // 입력 필드의 name 속성에 따라 상태를 업데이트
+        }));
+      };
     return(
         <div className="Mypage">
             <div id="titleCont">
@@ -118,32 +143,36 @@ function Mypage_mentee(){
             <div id="profile">
                 <div id="profile_img"></div>
                 <div id="ect">
-                    <div id="name">{userData.name} ({userData.age}세)</div>
-                    <div id="tag">#{userData.tag}</div>
+                    <div id="name">{userData.userInfo.nickName} ({userData.userInfo.age}세)</div>
+                    <div id="tag">#{userData.userInfo.subjectTag}</div>
                 </div>
                 <div id="toggleCont">
 
                 </div>
             </div>
             <div id="temp">
-                <div id="temp_num" style={{marginLeft:`calc(46px + ${userData.temp} * 2.99px - 20px)`}}>{userData.temp}ºC</div>
+                <div id="temp_num" style={{marginLeft:`calc(46px + ${userData.userInfo.temperature} * 2.99px - 20px)`}}>{userData.userInfo.temperature}ºC</div>
             <div className="temp-bar">
-          <div className="Temp" style={{ width: `${userData.temp}%` }}></div>
+          <div className="Temp" style={{ width: `${userData.userInfo.temperature}%` }}></div>
              </div>
             </div>
             <div id="intro">
                 <div id="intro_title">한줄소개</div>
-                <input id="intro_input"></input>
-                <button id="modify">프로필 수정</button>
+                <input id="intro_input"
+                placeholder={userData.userInfo.myInfo}
+                value={newUserData.myInfo}
+                onChange={handleIntroduceChange}
+                ></input>
+                <button id="modify" onClick={()=>handleModify()}>프로필 수정</button>
             </div>
             <div id="ing">
                 <div id="ing_title">현재 멘토링 현황</div>
-                <ChatList chatList={dummyList}/>
+                <ChatList chatList={ingList}/>
 
             </div>
             <div id="submit">
                 <div id="submit_title">멘토링 신청 현황</div>
-                <SubmitList submitList={dummyList1}/>
+                <SubmitList submitList={submitList}/>
             </div>
             <div id="btnCon">
                 <button id="logout">로그아웃</button>

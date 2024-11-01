@@ -213,12 +213,13 @@
         margin-right: 22px;
         margin-top: 3px;
         font-style: normal;
-
         font-weight: 400;
         font-size: 16px;
         line-height: 22px;
+        
         display: -webkit-box; /* Flexbox 대신 사용 */
         display: box;
+        text-align: start;
         -webkit-box-orient: vertical; /* 세로 방향으로 정렬 */
         -webkit-line-clamp: 2; /* 한 줄로 제한 */
         overflow: hidden;
